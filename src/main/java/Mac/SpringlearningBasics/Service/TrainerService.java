@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TrainerService {
 
@@ -14,6 +16,16 @@ public class TrainerService {
 
     @Autowired
     TrainerRepository trainerRepository;
+
+
+    public List<TrainerDetails> getTrainerDetails() {
+        return trainerRepository.findAll();
+    }
+
+    public TrainerDetails getTrainerIdDetails(int id) {
+        return trainerRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("Trainer not found with id " + id));
+    }
 
     public String createTrainerDetails(Trainer trainer) {
         TrainerDetails createEntity = new TrainerDetails(trainer.getId(), trainer.getName(), trainer.getSubject(), trainer.getExperience());
@@ -31,9 +43,9 @@ public class TrainerService {
         return "Trainer details updated successfully";
     }
 
-    public String deleteTrainerDetails(int id){
-        TrainerDetails deleteEntity=trainerRepository.findById(id).orElseThrow(()->
-                new RuntimeException("Trainer not found with id"+id));
+    public String deleteTrainerDetails(int id) {
+        TrainerDetails deleteEntity = trainerRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("Trainer not found with id" + id));
         trainerRepository.deleteById(id);
         return "Trainer details deleted successfully";
     }
