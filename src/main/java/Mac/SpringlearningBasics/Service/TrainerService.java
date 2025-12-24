@@ -17,35 +17,50 @@ public class TrainerService {
     @Autowired
     TrainerRepository trainerRepository;
 
-
     public List<TrainerDetails> getTrainerDetails() {
-        return trainerRepository.findAll();
+        log.debug("Fetching all trainer records from database");
+        List<TrainerDetails> trainers = trainerRepository.findAll();
+        log.debug("Fetched {} trainer records ", trainers.size());
+        return trainers;
     }
 
     public TrainerDetails getTrainerIdDetails(int id) {
-        return trainerRepository.findById(id).orElseThrow(() ->
-                new RuntimeException("Trainer not found with id " + id));
+        log.debug("Fetching trainer id ={}", id);
+        TrainerDetails trainer = trainerRepository.findById(id).orElseThrow(() -> new RuntimeException("Trainer not found with id " + id));
+        return trainer;
     }
 
     public String createTrainerDetails(Trainer trainer) {
         TrainerDetails createEntity = new TrainerDetails(trainer.getId(), trainer.getName(), trainer.getSubject(), trainer.getExperience());
+        log.debug("Creating trainer with id={}", trainer.getId());
         trainerRepository.save(createEntity);
+        log.info("Trainer created successfully with id={}", trainer.getId());
         return "Trainer saved successfully";
     }
 
     public String updateTrainerDetails(int id, Trainer trainer) {
-        TrainerDetails updateEntity = trainerRepository.findById(id).orElseThrow(() ->
-                new RuntimeException("Trainer not Found with id " + id));
+        log.debug("updating trainer details for id={}", id);
+        TrainerDetails updateEntity = trainerRepository.findById(id).orElseThrow(() -> {
+
+                    log.error("update failed.Trainer  not found for id={}", id);
+                    return new RuntimeException("Trainer not Found with id " + id);
+                }
+        );
         updateEntity.setName(trainer.getName());
         updateEntity.setSubject(trainer.getSubject());
         updateEntity.setExperience(trainer.getExperience());
         trainerRepository.save(updateEntity);
+        log.info("Trainer updated successfully id={}", id);
         return "Trainer details updated successfully";
     }
 
     public String deleteTrainerDetails(int id) {
-        TrainerDetails deleteEntity = trainerRepository.findById(id).orElseThrow(() ->
-                new RuntimeException("Trainer not found with id" + id));
+        log.debug("Deleting trainer with id={}", id);
+        TrainerDetails deleteEntity = trainerRepository.findById(id).orElseThrow(() -> {
+            log.error("Delete failed. Trainer not found for id={}", id);
+            return new RuntimeException("Trainer not found with id" + id);
+        });
+
         trainerRepository.deleteById(id);
         return "Trainer details deleted successfully";
     }
