@@ -1,7 +1,6 @@
 package Mac.SpringlearningBasics;
 
 
-import Mac.SpringlearningBasics.Service.CalculatorService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -18,7 +17,5 @@ public class SpringBootLearningApplication {
         logger.info("Info Started");
         logger.warn("Warn Started");
         logger.error("Error Started");
-        CalculatorService obj = context.getBean(CalculatorService.class);
-        logger.info("Calculator service response - " + obj.add(10, 20));
     }
 }

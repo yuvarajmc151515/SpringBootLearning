@@ -1,27 +1,28 @@
-package Mac.SpringlearningBasics.Pojo;
+package Mac.SpringlearningBasics.Dto;
 
-public class Trainer {
+public class TrainerDto {
 
-    private int id;
     private String name;
     private String subject;
     private double experience;
+    private AddressDto address;
 
-    public Trainer() {
-    }
-    public Trainer(int id,String name,String subject,double experience){
-        this.id=id;
-        this.name=name;
-        this.subject=subject;
-        this.experience=experience;
+    public TrainerDto() {
     }
 
-    public int getId() {
-        return id;
+    public TrainerDto(String name, String subject, double experience,AddressDto address) {
+        this.name = name;
+        this.subject = subject;
+        this.experience = experience;
+        this.address=address;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public AddressDto getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDto address) {
+        this.address = address;
     }
 
     public String getName() {
@@ -47,6 +48,7 @@ public class Trainer {
     public void setExperience(double experience) {
         this.experience = experience;
     }
+
 
 
 }
