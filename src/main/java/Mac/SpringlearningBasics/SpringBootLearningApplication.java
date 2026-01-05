@@ -1,6 +1,12 @@
 package Mac.SpringlearningBasics;
 
 
+import Mac.SpringlearningBasics.Entity.AddressEntity;
+import Mac.SpringlearningBasics.Entity.CourseEntity;
+import Mac.SpringlearningBasics.Entity.TrainerEntity;
+import Mac.SpringlearningBasics.Repo.TrainerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,7 +16,11 @@ import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class SpringBootLearningApplication {
+
+    @Autowired
+    TrainerRepository trainerRepository;
     private static Logger logger = LoggerFactory.getLogger(SpringBootLearningApplication.class);
+
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(SpringBootLearningApplication.class, args);
         logger.debug("Debugging Started");
@@ -18,4 +28,5 @@ public class SpringBootLearningApplication {
         logger.warn("Warn Started");
         logger.error("Error Started");
     }
+    
 }

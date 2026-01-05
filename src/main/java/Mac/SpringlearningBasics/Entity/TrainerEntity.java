@@ -1,9 +1,13 @@
 package Mac.SpringlearningBasics.Entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Table(name = "trainer")
+@Data
 public class TrainerEntity {
 
     @Id
@@ -23,18 +27,34 @@ public class TrainerEntity {
     @JoinColumn(name = "address_id", nullable = false)
     private AddressEntity address;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id", nullable = false)
+    private ProfileEntity profileEntity;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy ="")
+    private List<CourseEntity> courses;
+
     public TrainerEntity() {
     }
 
-    public TrainerEntity(String trainerName, String subject, double experience, AddressEntity address) {
+    public TrainerEntity(String trainerName, String subject, double experience, AddressEntity address, ProfileEntity profileEntity) {
         this.trainerName = trainerName;
         this.subject = subject;
         this.experience = experience;
         this.address = address;
+        this.profileEntity = profileEntity;
     }
 
     public Integer getEmpId() {
         return empId;
+    }
+
+    public ProfileEntity getProfileEntity() {
+        return profileEntity;
+    }
+
+    public void setProfileEntity(ProfileEntity profileEntity) {
+        this.profileEntity = profileEntity;
     }
 
     public void setEmpId(Integer empId) {

@@ -1,10 +1,5 @@
 package Mac.SpringlearningBasics.Dto;
 
-import jdk.jfr.DataAmount;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 
 public class AddressDto {
 
