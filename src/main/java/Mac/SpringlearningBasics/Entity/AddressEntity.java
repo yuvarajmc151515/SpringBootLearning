@@ -17,7 +17,8 @@ public class AddressEntity {
     private String street;
     private String city;
 
-    public AddressEntity() {}
+    public AddressEntity() {
+    }
 
     public AddressEntity(int doorNo, String street, String city) {
         this.doorNo = doorNo;

@@ -1,19 +1,16 @@
 package Mac.SpringlearningBasics.Entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
 import java.util.List;
 
 @Entity
 @Table(name = "trainer")
-@Data
 public class TrainerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "emp_id")
-    private Integer empId;
+    @Column(name = "trainer_id")
+    private Integer trainerId;
 
     @Column(name = "trainer_name", nullable = false)
     private String trainerName;
@@ -31,10 +28,19 @@ public class TrainerEntity {
     @JoinColumn(name = "profile_id", nullable = false)
     private ProfileEntity profileEntity;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy ="")
-    private List<CourseEntity> courses;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "trainerEntity")
+    private List<TrainerCourseEntity> courses;
+
+    public List<TrainerCourseEntity> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<TrainerCourseEntity> courses) {
+        this.courses = courses;
+    }
 
     public TrainerEntity() {
+
     }
 
     public TrainerEntity(String trainerName, String subject, double experience, AddressEntity address, ProfileEntity profileEntity) {
@@ -46,7 +52,7 @@ public class TrainerEntity {
     }
 
     public Integer getEmpId() {
-        return empId;
+        return trainerId;
     }
 
     public ProfileEntity getProfileEntity() {
@@ -57,8 +63,8 @@ public class TrainerEntity {
         this.profileEntity = profileEntity;
     }
 
-    public void setEmpId(Integer empId) {
-        this.empId = empId;
+    public void setEmpId(Integer trainerId) {
+        this.trainerId = trainerId;
     }
 
     public String getTrainerName() {
