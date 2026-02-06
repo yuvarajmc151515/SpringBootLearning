@@ -35,6 +35,7 @@ public class TrainerController {
         return trainer;
     }
 
+    //PostMapping
     @PostMapping("/trainer/create")
     public TrainerEntity createTrainer(@RequestBody TrainerDto trainer) {
         log.info(" Create Request Received");
