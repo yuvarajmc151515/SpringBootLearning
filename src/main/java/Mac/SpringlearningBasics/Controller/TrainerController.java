@@ -1,6 +1,5 @@
 package Mac.SpringlearningBasics.Controller;
 
-import Mac.SpringlearningBasics.Entity.AddressEntity;
 import Mac.SpringlearningBasics.Entity.TrainerEntity;
 import Mac.SpringlearningBasics.Dto.TrainerDto;
 import Mac.SpringlearningBasics.Service.TrainerService;
