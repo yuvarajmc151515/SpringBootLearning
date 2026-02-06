@@ -13,7 +13,7 @@ import java.util.List;
 public class TrainerService {
 
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(TrainerService.class);
-
+//Autowiring testing
     @Autowired
     private TrainerRepository trainerRepository;
 
