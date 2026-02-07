@@ -1,6 +1,7 @@
 package Mac.SpringlearningBasics.Entity;
 
 import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
@@ -15,11 +16,12 @@ public class TrainerEntity {
     @Column(name = "trainer_name", nullable = false)
     private String trainerName;
 
-
     @Column(name = "experience_years")
     private double experience;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private AddressEntity address;
 
     public TrainerEntity() {
 
@@ -31,13 +33,7 @@ public class TrainerEntity {
 
     }
 
-    public Integer getEmpId() {
-        return trainerId;
-    }
 
-    public void setEmpId(Integer trainerId) {
-        this.trainerId = trainerId;
-    }
 
     public String getTrainerName() {
         return trainerName;
@@ -56,5 +52,19 @@ public class TrainerEntity {
         this.experience = experience;
     }
 
+    public Integer getTrainerId() {
+        return trainerId;
+    }
 
+    public void setTrainerId(Integer trainerId) {
+        this.trainerId = trainerId;
+    }
+
+    public AddressEntity getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressEntity address) {
+        this.address = address;
+    }
 }

@@ -1,6 +1,8 @@
 package Mac.SpringlearningBasics.Service;
 
+import Mac.SpringlearningBasics.Dto.AddressDto;
 import Mac.SpringlearningBasics.Dto.TrainerDto;
+import Mac.SpringlearningBasics.Entity.AddressEntity;
 import Mac.SpringlearningBasics.Entity.TrainerEntity;
 import Mac.SpringlearningBasics.Repo.TrainerRepository;
 import org.slf4j.LoggerFactory;
@@ -26,7 +28,16 @@ public class TrainerService {
     }
 
     public TrainerEntity createTrainerDetails(TrainerDto dto) {
+
         TrainerEntity trainerEntity = new TrainerEntity(dto.getTrainerName(), dto.getExperience());
+        //mapping address details
+        AddressDto addressDto = dto.getAddress();
+        if (addressDto != null) {
+            AddressEntity addressEntity=new AddressEntity();
+            addressEntity.setCity(addressDto.getCity());
+            addressEntity.setState(addressDto.getState());
+            trainerEntity.setAddress(addressEntity);
+        }
         return trainerRepository.save(trainerEntity);
     }
 

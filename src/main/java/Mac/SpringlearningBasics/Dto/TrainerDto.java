@@ -5,13 +5,15 @@ public class TrainerDto {
     private long trainerId;
     private String trainerName;
     private double experience;
+    private AddressDto address;
 
     public TrainerDto() {
     }
 
-    public TrainerDto(String trainerName, String subject, double experience) {
+    public TrainerDto(String trainerName, String subject, double experience, AddressDto address) {
         this.trainerName = trainerName;
         this.experience = experience;
+        this.address = address;
 
     }
 
@@ -41,4 +43,11 @@ public class TrainerDto {
         this.experience = experience;
     }
 
+    public AddressDto getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDto address) {
+        this.address = address;
+    }
 }
