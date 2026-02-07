@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class TrainerController {
 
+    //Autowired
     @Autowired
     private TrainerService trainerService;
 
